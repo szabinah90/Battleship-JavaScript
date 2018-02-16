@@ -2,12 +2,13 @@ const battleshipMatrix = require('./battleship-matrix.js');
 const generateShips = require('./generateShips.js');
 const checkCollision = require('./collision-check.js');
 
-let arrayBoard = battleshipMatrix.arrayGenerator(13, 13);
+/*let arrayBoard = battleshipMatrix.arrayGenerator(13, 13);
 arrayBoard[3][2] = 3;
 arrayBoard[3][3] = 3;
 arrayBoard[3][4] = 3;
+*/
 
-console.log(battleshipMatrix.displayMatrix(arrayBoard));
+// console.log(battleshipMatrix.displayMatrix(arrayBoard));
 
 function getShips(boardsize, board) {
   let i;
@@ -22,4 +23,4 @@ function getShips(boardsize, board) {
   return board;
 }
 
-console.log(getShips(10, arrayBoard));
+console.log(getShips(12, arrayBoard));

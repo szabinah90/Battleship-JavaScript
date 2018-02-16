@@ -12,17 +12,15 @@ function putShipsOnBoard(board, ship) {
     for (i = ship.startx; i < ship.startx + ship.shipSize; i++) {
       j = ship.starty;
       board[i][j] = ship.shipSize;
-      console.log(i, j);
     }
   } else {
     for (j = ship.starty; j < ship.starty + ship.shipSize; j++) {
       i = ship.startx;
       board[i][j] = ship.shipSize;
-      console.log(i, j);
     }
   }
   return board;
 }
 
 console.log(ship);
-console.log(putShipsOnBoard(arrayBoard, ship));
+console.log(putShipsOnBoard(arra, ship));

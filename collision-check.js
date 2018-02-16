@@ -1,27 +1,33 @@
 function checkCollision(board, ship) {
-  let isCollision = false;
   let i;
   let j;
-  let checkSumRow = 0;
+  let collision = false;
+  let checkSumCells;
+  let checkSumI;
+  let checkSumJ;
   if (ship.vertOrHor === 1) { // vertical
-    for (i = ship.startx - 1; i < ship.shipSize + 3; i++) {
-      checkSumRow += i;
+    for (i = ship.startx - 1; i < ship.startx + ship.shipSize + 1; i++) {
+      checkSumI = +i;
       for (j = ship.starty - 1; j < ship.starty + 2; j++) {
-        while (board[i][j] === 0) {
-          isCollision = true;
-        }
+        checkSumJ = +j;
       }
+      checkSumCells = checkSumJ + checkSumI;
     }
   } else { // horizontal
-    for (j = ship.starty - 1; j < ship.shipSize + 3; j++) {
+    for (j = ship.starty - 1; j < ship.starty + ship.shipSize + 1; j++) {
+      checkSumJ = +j;
       for (i = ship.startx - 1; i < ship.startx + 2; i++) {
-        while (board[i][j] === 0) {
-          isCollision = true;
-        }
+        checkSumI = +i;
       }
+      checkSumCells = checkSumJ + checkSumI;
     }
   }
-  return isCollision;
+  if (checkSumCells == 0) {
+    collision = false;
+  } else {
+    collision = true;
+  }
+  return collision;
 }
 
 module.exports = {
