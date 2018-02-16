@@ -6,11 +6,11 @@ function generateShips(boardsize, shipsize) {
   let isSunk;
 
   if (vertOrHor === 1) { // vertical
-    startx = Math.floor(Math.random() * (boardsize - shipsize + 1) + 1);
-    starty = Math.floor((Math.random() * boardsize) + 1);
+    startx = (Math.floor(Math.random() * (boardsize - shipsize - 1))) + 1;
+    starty = (Math.floor((Math.random() * (boardsize - 2)))) + 1;
   } else { // horizontal
-    startx = Math.floor((Math.random() * boardsize) + 1);
-    starty = Math.floor(Math.random() * (boardsize - shipsize + 1) + 1);
+    startx = (Math.floor((Math.random() * (boardsize - 2)))) + 1;
+    starty = (Math.floor(Math.random() * (boardsize - shipsize - 1))) + 1;
   }
   shipSize = shipsize;
   isSunk = false;
@@ -24,7 +24,7 @@ function generateShips(boardsize, shipsize) {
   };
   return ship;
 }
-// console.log(generateShips(10, 3));
+// console.log(generateShips(10, 9));
 
 module.exports = {
   generateShips: generateShips

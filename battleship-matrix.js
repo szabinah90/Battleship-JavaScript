@@ -9,8 +9,10 @@ function arrayGenerator(a, b) {
   return array2D;
 }
 
+/*
 let board = arrayGenerator(12, 12);
 console.log(board);
+*/
 
 /*
 function arrayGenerator() {
