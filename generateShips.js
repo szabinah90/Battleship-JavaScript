@@ -4,6 +4,7 @@ function generateShips(boardsize, shipsize) {
   let starty;
   let shipSize;
   let isSunk;
+  let hit;
 
   if (vertOrHor === 1) { // vertical
     startx = (Math.floor(Math.random() * (boardsize - shipsize - 1))) + 1;
@@ -14,17 +15,18 @@ function generateShips(boardsize, shipsize) {
   }
   shipSize = shipsize;
   isSunk = false;
+  hit = 0;
 
   let ship = {
     vertOrHor: vertOrHor,
     startx: startx,
     starty: starty,
     shipSize: shipSize,
+    hit: hit,
     isSunk: isSunk
   };
   return ship;
 }
-// console.log(generateShips(10, 9));
 
 module.exports = {
   generateShips: generateShips
