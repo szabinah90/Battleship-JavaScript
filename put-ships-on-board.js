@@ -2,7 +2,7 @@ const battleshipMatrix = require('./battleship-matrix.js');
 const generateShips = require('./generateShips.js');
 // const checkCollision = require('./collision-check.js');
 
-let arrayBoard = battleshipMatrix.arrayGenerator();
+let arrayBoard = battleshipMatrix.arrayGenerator(13, 13);
 let ship = generateShips.generateShips(10, 5);
 
 function putShipsOnBoard(board, ship) {
