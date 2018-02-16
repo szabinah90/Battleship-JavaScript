@@ -22,7 +22,7 @@ function checkCollision(board, ship) {
       checkSumCells = checkSumJ + checkSumI;
     }
   }
-  if (checkSumCells == 0) {
+  if (checkSumCells == (ship.shipSize * ship.shipSize)) {
     collision = false;
   } else {
     collision = true;
