@@ -18,10 +18,11 @@ function getShips(boardsize, board) {
   for (i = 5; i > 0; i--) {
     let newShips = [];
     let ship = generateShips.generateShips(boardsize, i);
-    board = putShipsOnBoard.putShipsOnBoard(board, ship);
     let collision = checkCollision.checkCollision(board, ship);
     if (collision === false) {
-      console.log(collision);
+      board = putShipsOnBoard.putShipsOnBoard(board, ship);
+    } else {
+      i = 6;
     }
   }
   return board;

@@ -2,9 +2,9 @@ function checkCollision(board, ship) {
   let i;
   let j;
   let collision = false;
-  let checkSumCells;
-  let checkSumI;
-  let checkSumJ;
+  let checkSumCells = 0;
+  let checkSumI = 0;
+  let checkSumJ = 0;
   if (ship.vertOrHor === 1) { // vertical
     for (i = ship.startx - 1; i < ship.startx + ship.shipSize + 1; i++) {
       checkSumI = +i;
@@ -22,10 +22,10 @@ function checkCollision(board, ship) {
       checkSumCells = checkSumJ + checkSumI;
     }
   }
-  if (checkSumCells == (ship.shipSize * ship.shipSize)) {
-    collision = false;
-  } else {
+  if (checkSumCells === (ship.shipSize * ship.shipSize)) {
     collision = true;
+  } else {
+    collision = false;
   }
   return collision;
 }

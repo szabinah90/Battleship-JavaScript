@@ -2,7 +2,7 @@
 
 function arrayGenerator(a, b) {
   let i;
-  let array2D = []
+  let array2D = [];
   for (i = 0; i < b; i++) {
     array2D.push(new Array(a).fill(0));
   }
