@@ -3,7 +3,7 @@ const generateShips = require('./generateShips.js');
 const checkCollision = require('./collision-check.js');
 const putShipsOnBoard = require('./put-ships-on-board.js');
 
-let board = battleshipMatrix.arrayGenerator(12, 12);
+// let board = battleshipMatrix.arrayGenerator(12, 12, 0);
 
 function getShips(boardsize, board) {
   let i;
@@ -20,11 +20,12 @@ function getShips(boardsize, board) {
     }
   }
   // console.log(board);
-  return newShips;
+  return [newShips, board];
 }
 
 // let generatedShips = getShips(10, board);
-// console.log(generatedShips);
+// console.log(generatedShips[0][0]);
+// console.log(generatedShips[0][0]);
 
 module.exports = {
   getShips: getShips

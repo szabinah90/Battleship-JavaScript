@@ -3,7 +3,7 @@ const generateShips = require('./generateShips.js');
 const checkCollision = require('./collision-check.js');
 const putShipsOnBoard = require('./put-ships-on-board.js');
 const getShips = require('./getShips.js');
-
+/*
 // Test: Create a board with one fixed ship
 let board = battleshipMatrix.arrayGenerator(12, 12, 0);
 board[1][3] = 5;
@@ -70,12 +70,13 @@ let ships = [{
   hit: 0,
   isSunk: false
 }];
-
-function guessing(boardHidden, ships, uiRow, uiCol) { // ships --> getship output 0. indexű array eleme!!!
+*/
+function guessing(boardHidden, ships, uiRow, uiCol) { // ships --> getship output 0. indexű array eleme!!!; uiRow és uiCol a usert input interpreter outputjának 0 és 1 es indexű eleme
   let i;
   let shipSunk;
+  let guessResult;
   for (i = 0; i < ships.length; i++) {
-    if (boardHidden[uiRow - 1][uiCol - 1] === ships[i].shipSize) {
+    if (boardHidden[uiRow][uiCol - 64] === ships[i].shipSize) {
       ships[i].hit += 1;
       if (ships[i].hit === ships[i].shipSize) {
         ships[i].isSunk = true;
@@ -85,25 +86,46 @@ function guessing(boardHidden, ships, uiRow, uiCol) { // ships --> getship outpu
     }
   }
 
-  if (boardHidden[uiRow - 1][uiCol - 1] === 'G') {
-    shipSunk = 'already-guessed';
+  if (boardHidden[uiRow][uiCol - 64] === 'G') {
+    shipSunk = 'already-hit';
   }
 
-  if (boardHidden[uiRow - 1][uiCol - 1] === 0) {
+  if (boardHidden[uiRow][uiCol - 64] === 0) {
     shipSunk = 'missed';
   }
 
-  boardHidden[uiRow - 1][uiCol - 1] = 'G'; // G = guessed
-  return shipSunk;
+  boardHidden[uiRow][uiCol - 64] = 'G'; // G = guessed
+
+  if ((boardHidden[uiRow][uiCol - 64] !== 0 || boardHidden[uiRow][uiCol - 64] !== 'G') && shipSunk === false) {
+    guessResult = 'Hit!';
+  }
+
+  if (shipSunk === true) {
+    guessResult = 'You sank a battleship!';
+  }
+
+  if (shipSunk === 'already-hit') {
+    guessResult = 'You already hit this spot!';
+  }
+
+  if (shipSunk === 'missed') {
+    guessResult = 'Miss!';
+  }
+
+  return guessResult;
 }
 
+module.exports = {
+  guessing: guessing
+};
+/*
 // hit
 let uiRow = 7;
 let uiCol = 7;
 
 // sink
-let uiRow2 = 4;
-let uiCol2 = 5;
+let uiRow2 = 5;
+let uiCol2 = 7;
 
 // already guessed
 let uiRow3 = 10;
@@ -112,14 +134,15 @@ let uiCol3 = 10;
 // missed
 let uiRow4 = 2;
 let uiCol4 = 9;
-
-// let shipHit = guessing(board, ships, uiRow, uiCol);
-// let shipSunk = guessing(board, ships, uiRow2, uiCol2);
-// let shipGuessed = guessing(board, ships, uiRow3, uiCol3);
-// let shipMiss = guessing(board, ships, uiRow4, uiCol4);
+*/
+// let guessResult = guessing(board, ships, uiRow, uiCol);
+// let guessResult = guessing(board, ships, uiRow2, uiCol2);
+// let guessResult = guessing(board, ships, uiRow3, uiCol3);
+// let guessResult = guessing(board, ships, uiRow4, uiCol4);
 // console.log(board);
-// console.log(ships[0]);
+// console.log(ships[3]);
 // console.log(shipHit);
 // console.log(shipSunk);
 // console.log(shipGuessed);
 // console.log(shipMiss);
+// console.log(guessResult);
