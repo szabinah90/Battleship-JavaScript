@@ -29,27 +29,19 @@ function arrayGenerator() {
 
 // Displays the matrix with row numbers and lettering.
 function displayMatrix(array) {
-  let j = 0;
-  let i;
-  let clean = '';
-  for (i = 0; i < array.length; i++) {
-    let text = '';
-    if (i === 0 && j === 0) {
-      text = '';
-    } else {
-      text += String.fromCharCode(64 + i);
+  let i = j = 0;
+  let clean = [];
+  for (i = 0; i < 11; i++) {
+    let row = [];
+    for (j = 0; j < 11; j++) {
+      row.push(array[i][j]);
     }
-    for (j = 0; j < array[i].length; j++) {
-      if (i === 0 && j >= 0 && j < 11) {
-        text += j;
-      }
-      text += array[i][j] + '     ';
-    }
-
-    clean += text + '\n';
+    clean.push(row);
   }
   return clean;
 }
+
+
 
 // let array = arrayGenerator();
 // console.log(displayMatrix(array));
@@ -58,3 +50,6 @@ module.exports = {
   arrayGenerator: arrayGenerator,
   displayMatrix: displayMatrix
 };
+
+
+//console.log(displayMatrix(arrayGenerator(12, 12)));
