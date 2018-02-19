@@ -71,10 +71,11 @@ let ships = [{
   isSunk: false
 }];
 */
-function guessing(boardHidden, ships, uiRow, uiCol) { // ships --> getship output 0. indexű array eleme!!!; uiRow és uiCol a usert input interpreter outputjának 0 és 1 es indexű eleme
+function guessing(boardHidden, boardSeen, ships, uiRow, uiCol) { // ships --> getship output 0. indexű array eleme!!!; uiRow és uiCol a usert input interpreter outputjának 0 és 1 es indexű eleme
   let i;
   let shipSunk;
   let guessResult;
+
   for (i = 0; i < ships.length; i++) {
     if (boardHidden[uiRow][uiCol - 64] === ships[i].shipSize) {
       ships[i].hit += 1;
@@ -86,7 +87,7 @@ function guessing(boardHidden, ships, uiRow, uiCol) { // ships --> getship outpu
     }
   }
 
-  if (boardHidden[uiRow][uiCol - 64] === 'G') {
+  if (boardHidden[uiRow][uiCol - 64] === 'X' || boardHidden[uiRow][uiCol - 64] === '-') {
     shipSunk = 'already-hit';
   }
 
@@ -94,9 +95,16 @@ function guessing(boardHidden, ships, uiRow, uiCol) { // ships --> getship outpu
     shipSunk = 'missed';
   }
 
-  boardHidden[uiRow][uiCol - 64] = 'G'; // G = guessed
-
-  if ((boardHidden[uiRow][uiCol - 64] !== 0 || boardHidden[uiRow][uiCol - 64] !== 'G') && shipSunk === false) {
+  if (boardHidden[uiRow][uiCol - 64] !== 0 && boardHidden[uiRow][uiCol - 64] !== '-') {
+    boardHidden[uiRow][uiCol - 64] = 'X'; // X = ship
+    boardSeen[uiRow][uiCol - 64] = 'X';
+  } 
+  if (boardHidden[uiRow][uiCol - 64] === 0) {
+    boardHidden[uiRow][uiCol - 64] = '-'; // missed
+    boardSeen[uiRow][uiCol - 64] = '-';
+  }
+  
+  if (boardHidden[uiRow][uiCol - 64] === 'X' && shipSunk === false) {
     guessResult = 'Hit!';
   }
 

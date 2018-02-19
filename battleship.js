@@ -19,17 +19,21 @@ function gameLoop() {
   let generatedOutput = generatePlayground();
   let playBoard = generatedOutput[1];
   let playShips = generatedOutput[0];
-  console.log(playBoard);
+  let playBoardSeen = battleshipMatrix.displayMatrix(battleshipMatrix.arrayGenerator(12, 12, ' '));
+  console.log(playBoardSeen);
   let counter = 0;
 
   while (counter !== 5) {
     let uiCol = readlineSync.keyIn('Please enter a column (capital letters: A-J): ', { limit: '$<ABCDEFGHIJ>' });
     uiCol = userInputInterpreter.userInputInterpreter(uiCol);
-    let uiRow = readlineSync.keyIn('Please enter a row (numbers: 1-10): ', { limit: '$<0-9><q>' });
+    let uiRow = readlineSync.question('Please enter a row (numbers: 1-10): ');
+    if (uiRow < 1 || uiRow > 10) {
+      console.log('Invalid row. Please try again.');
+    }
 
-    let guess = guessing.guessing(playBoard, playShips, uiRow, uiCol);
+    let guess = guessing.guessing(playBoard, playBoardSeen, playShips, uiRow, uiCol);
     console.log('\33c');
-    console.log(playBoard);
+    console.log(playBoardSeen);
     console.log(guess);
 
     if (uiRow === 'q') {
