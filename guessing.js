@@ -5,7 +5,7 @@ const putShipsOnBoard = require('./put-ships-on-board.js');
 const getShips = require('./getShips.js');
 
 // Test: Create a board with one fixed ship
-let board = battleshipMatrix.arrayGenerator(12, 12);
+let board = battleshipMatrix.arrayGenerator(12, 12, 0);
 board[1][3] = 5;
 board[2][3] = 5;
 board[3][3] = 5;
@@ -71,11 +71,11 @@ let ships = [{
   isSunk: false
 }];
 
-function guessing(boardHidden, ships, uiRow, uiCol) {
+function guessing(boardHidden, ships, uiRow, uiCol) { // ships --> getship output 0. indexű array eleme!!!
   let i;
   let shipSunk;
   for (i = 0; i < ships.length; i++) {
-    if (boardHidden[uiRow][uiCol] === ships[i].shipSize) {
+    if (boardHidden[uiRow - 1][uiCol - 1] === ships[i].shipSize) {
       ships[i].hit += 1;
       if (ships[i].hit === ships[i].shipSize) {
         ships[i].isSunk = true;
@@ -85,15 +85,15 @@ function guessing(boardHidden, ships, uiRow, uiCol) {
     }
   }
 
-  if (boardHidden[uiRow][uiCol] === 'G') {
+  if (boardHidden[uiRow - 1][uiCol - 1] === 'G') {
     shipSunk = 'already-guessed';
   }
 
-  if (boardHidden[uiRow][uiCol] === 0) {
+  if (boardHidden[uiRow - 1][uiCol - 1] === 0) {
     shipSunk = 'missed';
   }
 
-  boardHidden[uiRow][uiCol] = 'G'; // G = guessed
+  boardHidden[uiRow - 1][uiCol - 1] = 'G'; // G = guessed
   return shipSunk;
 }
 
