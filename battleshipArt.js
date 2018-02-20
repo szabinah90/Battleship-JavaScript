@@ -14,6 +14,9 @@ function artWork () {
   console.log(' \\_________________________________________________________________________|');
   console.log('\n');
   console.log('\n');
+  console.log('                           WELCOME TO BATTLESHIP!');
+  console.log('\n');
+  console.log('\n');
 }
 
 module.exports = {

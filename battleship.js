@@ -20,7 +20,7 @@ function gameLoop() {
   let generatedOutput = generatePlayground();
   let playBoard = generatedOutput[1];
   let playShips = generatedOutput[0];
-  let playBoardSeen = battleshipMatrix.displayMatrix(battleshipMatrix.arrayGenerator(12, 12, ' '));
+  let playBoardSeen = battleshipMatrix.displayMatrix(battleshipMatrix.arrayGenerator(12, 12, '?'));
   console.log('\33c');
   artWork.artWork();
   
@@ -28,14 +28,15 @@ function gameLoop() {
   let counter = 0;
 
   while (counter !== 5) {
-    let uiCol = readlineSync.keyIn('Please enter a column (capital letters: A-J): ', { limit: '$<A-J>, caseSensitive: true' });
+    let uiCol = readlineSync.keyIn('\nPlease enter a column (capital letters: A-J): ', { limit: '$<A-J>', caseSensitive: true });
     uiCol = userInputInterpreter.userInputInterpreter(uiCol);
     let uiRow = readlineSync.question('Please enter a row (numbers: 1-10): ');
 
     let guess = guessing.guessing(playBoard, playBoardSeen, playShips, uiRow, uiCol);
     console.log('\33c');
+    artWork.artWork();
     battleshipMatrix.print(battleshipMatrix.genUserBoard(playBoardSeen));
-    console.log(guess);
+    console.log('\n' + guess);
 
     if (uiRow === 'q') {
       process.exit;
