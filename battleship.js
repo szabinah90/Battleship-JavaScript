@@ -23,8 +23,9 @@ function gameLoop() {
 
   while (counter !== 5) {
     let uiCol = readlineSync.keyIn('\nPlease enter a column (capital letters: A-J): ', { limit: '$<A-J><!>', caseSensitive: true });
-    if (uiCol == '!') {
-      process.exit;
+    if (uiCol === '!') {
+      console.log('\nThank you for using our game! Try to finish it next time!');
+      process.exit();
     }
     uiCol = userInputInterpreter.userInputInterpreter(uiCol);
     let uiRow = userRow.userRow();
@@ -48,7 +49,7 @@ function gameLoop() {
       break;
     case ('N' || 'n'):
       console.log('\nThank you for playing our game! We hope we will meet again!');
-      process.exit;
+      process.exit();
       break;
   }
 }

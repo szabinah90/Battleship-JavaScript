@@ -16,6 +16,7 @@ function artWork () {
   console.log('\n');
   console.log('                           WELCOME TO BATTLESHIP!');
   console.log('\n');
+  console.log('                                                                Enter a ! for the column to exit.');
   console.log('\n');
 }
 
