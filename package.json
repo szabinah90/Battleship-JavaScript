@@ -1,0 +1,19 @@
+{
+  "name": "battlship_secondround",
+  "version": "1.0.0",
+  "description": "",
+  "main": "battleship-matrix.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/szabinah90/Battleship_SecondRound.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/szabinah90/Battleship_SecondRound/issues"
+  },
+  "homepage": "https://github.com/szabinah90/Battleship_SecondRound#readme"
+}

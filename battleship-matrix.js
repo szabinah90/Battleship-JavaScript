@@ -1,47 +1,66 @@
 // Generates a matrix.
-function arrayGenerator() {
-  let matrix = [[]];
-  for (let i = 0; i < 11; i++) {
-    matrix[i] = [];
-    for (let j = 0; j < 11; j++) {
-      if (i >= 1 && j >= 1) {
-        matrix[i][j] = 0;
-      } else {
-        matrix[i][j] = '';
-      }
-    }
+
+function arrayGenerator(a, b, c) {
+  let i;
+  let array2D = [];
+  for (i = 0; i < b; i++) {
+    array2D.push(new Array(a).fill(c));
   }
-  return matrix;
+  return array2D;
 }
 
 // Displays the matrix with row numbers and lettering.
 function displayMatrix(array) {
+  let i = 0;
   let j = 0;
-  let i;
-  let clean = '';
-  for (i = 0; i < array.length; i++) {
-    let text = '';
-    if (i === 0 && j === 0) {
-      text = '';
-    } else {
-      text += String.fromCharCode(64 + i);
+  let clean = [];
+  for (i = 0; i < 11; i++) {
+    let row = [];
+    for (j = 0; j < 11; j++) {
+      row.push(array[i][j]);
     }
-    for (j = 0; j < array[i].length; j++) {
-      if (i === 0 && j >= 0 && j < 11) {
-        text += j;
-      }
-      text += array[i][j] + '     ';
-    }
-
-    clean += text + '\n';
+    clean.push(row);
   }
   return clean;
 }
 
-// let array = arrayGenerator();
-// console.log(displayMatrix(array));
+var numChar = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"];
+
+function genUserBoard(arr) {
+  var iC = 1;
+  var jC = 1;
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr[i].length; j++) {
+      if (j === 0 && i === 0) {
+        arr[i][j] = '  ';
+      } else if (j === 0) {
+        if (i < 10) {
+          arr[i][j] = iC + ' ';
+        } else {
+          arr[i][j] = iC;
+        }
+        iC++;
+      } else if (i === 0) {
+        arr[i][j] = numChar[jC - 1];
+        jC++;
+      }
+    }
+  } return arr;
+}
+
+function print (array) {
+  for (var i = 0; i < array.length; i++) {
+    var row = '';
+    for (var j = 0; j < array[i].length; j++) {
+      row += ' ' + array[i][j] + ' ';
+    }
+    console.log(row);
+  }
+}
 
 module.exports = {
   arrayGenerator: arrayGenerator,
-  displayMatrix: displayMatrix
+  displayMatrix: displayMatrix,
+  genUserBoard: genUserBoard,
+  print: print
 };
