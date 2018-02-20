@@ -17,14 +17,15 @@ function gameLoop() {
   let playBoardSeen = battleshipMatrix.displayMatrix(battleshipMatrix.arrayGenerator(12, 12, '?'));
   console.log('\33c');
   artWork.artWork();
-
+  
   battleshipMatrix.print(battleshipMatrix.genUserBoard(playBoardSeen));
+  
   let counter = 0;
 
   while (counter !== 5) {
     let uiCol = readlineSync.keyIn('\nPlease enter a column (capital letters: A-J): ', { limit: '$<A-J><!>', caseSensitive: true });
     if (uiCol === '!') {
-      console.log('\nThank you for using our game! Try to finish it next time!');
+      console.log('\nThank you for playing our game! Try to finish it next time!');
       process.exit();
     }
     uiCol = userInputInterpreter.userInputInterpreter(uiCol);
@@ -34,6 +35,7 @@ function gameLoop() {
     console.log('\33c');
     artWork.artWork();
     battleshipMatrix.print(battleshipMatrix.genUserBoard(playBoardSeen));
+    
     console.log('\n' + guess);
 
     if (guess === 'You sank a battleship!') {
