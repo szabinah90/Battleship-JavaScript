@@ -30,7 +30,7 @@ function guessing(boardHidden, boardSeen, ships, uiRow, uiCol) { // ships --> ge
 
   if (boardHidden[uiRow][uiCol - 64] !== 0 && boardHidden[uiRow][uiCol - 64] !== ' ') {
     boardHidden[uiRow][uiCol - 64] = 'X'; // X = ship
-    boardSeen[uiRow][uiCol - 64] = 'X';
+    boardSeen[uiRow][uiCol - 64] = '\x1b[41mX\x1b[0m';
   }
   if (boardHidden[uiRow][uiCol - 64] === 0) {
     boardHidden[uiRow][uiCol - 64] = ' '; // missed
