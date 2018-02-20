@@ -9,6 +9,7 @@ function gameLoop() {
   const readlineSync = require('readline-sync');
   const artWork = require('./battleshipArt.js');
   const generatePlayground = require('./generate-playground.js');
+  const userRow = require('./user-row.js');
 
   let generatedOutput = generatePlayground.generatePlayground();
   let playBoard = generatedOutput[1];
@@ -21,19 +22,18 @@ function gameLoop() {
   let counter = 0;
 
   while (counter !== 5) {
-    let uiCol = readlineSync.keyIn('\nPlease enter a column (capital letters: A-J): ', { limit: '$<A-J>', caseSensitive: true });
+    let uiCol = readlineSync.keyIn('\nPlease enter a column (capital letters: A-J): ', { limit: '$<A-J><!>', caseSensitive: true });
+    if (uiCol == '!') {
+      process.exit;
+    }
     uiCol = userInputInterpreter.userInputInterpreter(uiCol);
-    let uiRow = readlineSync.question('Please enter a row (numbers: 1-10): ');
+    let uiRow = userRow.userRow();
 
     let guess = guessing.guessing(playBoard, playBoardSeen, playShips, uiRow, uiCol);
     console.log('\33c');
     artWork.artWork();
     battleshipMatrix.print(battleshipMatrix.genUserBoard(playBoardSeen));
     console.log('\n' + guess);
-
-    if (uiRow === 'q') {
-      process.exit;
-    }
 
     if (guess === 'You sank a battleship!') {
       counter += 1;
