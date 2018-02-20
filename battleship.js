@@ -23,7 +23,8 @@ function gameLoop() {
   let playBoardSeen = battleshipMatrix.displayMatrix(battleshipMatrix.arrayGenerator(12, 12, ' '));
   console.log('\33c');
   artWork.artWork();
-  console.log(playBoardSeen);
+  
+  battleshipMatrix.print(battleshipMatrix.genUserBoard(playBoardSeen));
   let counter = 0;
 
   while (counter !== 5) {
@@ -33,7 +34,7 @@ function gameLoop() {
 
     let guess = guessing.guessing(playBoard, playBoardSeen, playShips, uiRow, uiCol);
     console.log('\33c');
-    console.log(playBoardSeen);
+    battleshipMatrix.print(battleshipMatrix.genUserBoard(playBoardSeen));
     console.log(guess);
 
     if (uiRow === 'q') {
