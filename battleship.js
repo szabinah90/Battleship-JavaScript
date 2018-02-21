@@ -94,4 +94,6 @@ function gameLoop() {
   }
 }
 
-gameLoop();
+module.exports = {
+gameLoop: gameLoop
+}
