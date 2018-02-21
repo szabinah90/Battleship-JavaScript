@@ -22,7 +22,27 @@ function gameLoop() {
 
   var counter = 0;
   var torpedoCounter = 100;
-
+  torpedos = [30, 50, 70, 90];
+  torp = readlineSync.keyInSelect(torpedos, '\nHow many torpedos do you need?');
+  switch (torp) {
+    case 0:
+    var torpedoCounter = 30;
+    break;
+    case 1:
+    var torpedoCounter = 50;
+    break;
+    case 2:
+    var torpedoCounter = 70;
+    break;
+    case 3:
+    var torpedoCounter = 90;
+    break;
+  }
+  console.log('\33c');
+  artWork.artWork();
+  battleshipMatrix.print(battleshipMatrix.genUserBoard(playBoardSeen));
+  
+  while (counter !== 5 || torpedoCounter !== 0) {
     let uiCol = readlineSync.keyIn('\nPlease enter a column (capital letters: A-J): ', { limit: '$<A-J><!>', caseSensitive: true });
     if (uiCol === '!') {
       console.log('\nThank you for playing our game! Try to finish it next time!');
@@ -41,9 +61,8 @@ function gameLoop() {
     if (guess === 'You sank a battleship!') {
       counter += 1;
     }
-    console.log(counter);
     torpedoCounter--
-    console.log('Torpedoes left: ' + torpedoCounter);
+    console.log('\nTorpedoes left: ' + torpedoCounter);
     if (torpedoCounter === 0) {
       console.log('\nSorry, you ran out of torpedos. You lost.')
       let newGame = readlineSync.keyIn('Would you like to play again? (y/n)', { limit: '$<nNyY>' });
@@ -73,5 +92,6 @@ function gameLoop() {
       }
     }
   }
+}
 
 gameLoop();
